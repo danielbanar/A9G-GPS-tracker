@@ -269,7 +269,7 @@ void gpsTask(void *pData)
             Trace(1, "power: %d %d", v, percent);
 
             FormatTime(time(NULL) + 7200);
-            snprintf(buffer2, sizeof(buffer2), "%s\n%d m %dkm/h\nFix=%s\nSats=%d\nBatt=%d%% %.3fV\nhttps://www.google.com/maps/search/%f,%f %d/%d\r\n", buffer3, gpsInfo->gga.altitude.value / gpsInfo->gga.altitude.scale, gpsInfo->vtg.speed_kph.value / gpsInfo->vtg.speed_kph.scale, isFixedStr, gpsInfo->gga.satellites_tracked, percent, v * 0.001f, latitude, longitude);
+            snprintf(buffer2, sizeof(buffer2), "%s\n%d m %dkm/h\nFix=%s\nSats=%d\nBatt=%d%% %.3fV\nhttps://www.google.com/maps/search/%f,%f\r\n", buffer3, gpsInfo->gga.altitude.value / gpsInfo->gga.altitude.scale, gpsInfo->vtg.speed_kph.value / gpsInfo->vtg.speed_kph.scale, isFixedStr, gpsInfo->gga.satellites_tracked, percent, v * 0.001f, latitude, longitude);
             // SendSMS(buffer2);
             Trace(1, "payload: %s", buffer2);
         }
