@@ -73,7 +73,6 @@ void ParsePhoneNumber(const char *input, char *phoneNumber)
 }
 void EventDispatch(API_Event_t *pEvent)
 {
-    SMS_Storage_Info_t storageInfo;
     switch (pEvent->id)
     {
     case API_EVENT_ID_NO_SIMCARD:
@@ -124,7 +123,7 @@ void EventDispatch(API_Event_t *pEvent)
         // Trace(1, "sms storage sim card info, used:%d,total:%d", storageInfo.used, storageInfo.total);
         // used = storageInfo.used;
         // total = storageInfo.total;
-        
+
         //Delete all messages on sim, because if the sim card is full you will not receive any messages
         for (size_t i = 0; i < 10; i++)
         {
@@ -270,7 +269,7 @@ void gpsTask(void *pData)
             Trace(1, "power: %d %d", v, percent);
 
             FormatTime(time(NULL) + 7200);
-            snprintf(buffer2, sizeof(buffer2), "%s\n%d m %dkm/h\nFix=%s\nSats=%d\nBatt=%d%% %.3fV\nhttps://www.google.com/maps/search/%f,%f %d/%d\r\n", buffer3, gpsInfo->gga.altitude.value / gpsInfo->gga.altitude.scale, gpsInfo->vtg.speed_kph.value / gpsInfo->vtg.speed_kph.scale, isFixedStr, gpsInfo->gga.satellites_tracked, percent, v * 0.001f, latitude, longitude, used, total);
+            snprintf(buffer2, sizeof(buffer2), "%s\n%d m %dkm/h\nFix=%s\nSats=%d\nBatt=%d%% %.3fV\nhttps://www.google.com/maps/search/%f,%f %d/%d\r\n", buffer3, gpsInfo->gga.altitude.value / gpsInfo->gga.altitude.scale, gpsInfo->vtg.speed_kph.value / gpsInfo->vtg.speed_kph.scale, isFixedStr, gpsInfo->gga.satellites_tracked, percent, v * 0.001f, latitude, longitude);
             // SendSMS(buffer2);
             Trace(1, "payload: %s", buffer2);
         }
